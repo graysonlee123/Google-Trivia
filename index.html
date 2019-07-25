@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,13 +8,30 @@
     <title>Google Trivia!</title>
 
     <link rel="stylesheet" href="./assets/style/reset.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="./assets/style/style.css">
 </head>
+
 <body>
-    <h1>Google Trivia</h1>
-    
+    <nav class="navbar">
+        <div>
+            <span>Correct Guesses: <span id="correctGuessesDisplay">0</span></span>
+            <span>Incorrect Guesses: <span id="incorrectGuessesDisplay">0</span></span>
+        </div>
+    </nav>
+    <div id="main-container" class="container mx-auto mt-5 text-center rounded">
+        <div>
+            <img src="./assets//images/google-trivia.png" alt="Google Trivia" class="w-50">
+        </div>
+        <div id="display">
+
+        </div>
+    </div>
+
     <!-- Javascript -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="./assets/javascript/javascript.js"></script>
 </body>
+
 </html>
