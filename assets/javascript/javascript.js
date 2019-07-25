@@ -8,12 +8,17 @@ const questions = [
     { question: "In 1998, when Google.com was still in beta, they were answering up to how many search queries a day?", a: "30,000", b: "450,000", c: "100,000", d: "10,000", answer: "10,000" }
 ];
 
-const questionTime = 15;
+const questionTime = 3;
+const answerPageTime = 5;
+let remainingTime = questionTime;
+let answerPageTimeRemains = answerPageTime;
+let mainIntervalID;
+
 const googleImg = $("#google-image");
 const display = $("#display");
-const questionDisplay = $("#question-buttons-display");
+const buttonDisplay = $("#question-buttons-display");
 
-const currentQuestion = 1;
+let currentQuestion = 1;
 
 // Game functions
 
@@ -21,26 +26,61 @@ const game = {
     runGame: function () {
         console.log("Running game");
 
-        display.empty();
-                    
         game.loadQuestion(currentQuestion);
 
         googleImg.attr("src", "././assets/images/question.png");
 
     },
+    startClock: function () {
+        mainIntervalID = setInterval(function () {
+            if (remainingTime == 0) {
+                //Run Exit Round
+                console.log("Next Round");
+                clearInterval(mainIntervalID);
+                game.displayAnswerTimer();
+            } else {
+                remainingTime--;
+                console.log(remainingTime);
+            }
+        }, 1000);
+    },
+    loadQuestion: function (index) {
+        display.empty();
+        buttonDisplay.empty(); 
+        
+        game.startClock();
+        const loadedQuestion = questions[index];
+        display.append(`<h2>Question ${index}: ${loadedQuestion.question} </h2>`);
+        buttonDisplay.append(`<button>${loadedQuestion.a}</button>`);
+        buttonDisplay.append(`<button>${loadedQuestion.b}</button>`);
+        buttonDisplay.append(`<button>${loadedQuestion.c}</button>`);
+        buttonDisplay.append(`<button>${loadedQuestion.d}</button>`);
+    },
+    displayAnswerTimer: function () {
+        let answerPageTimeRemains = answerPageTime;
+        answerIntervalID = setInterval(function () {
+            if (answerPageTimeRemains == 0) {
+                //Run Exit Round
+                console.log("Next Round after answer");
+
+                //display here
+
+                currentQuestion++;
+
+                game.loadQuestion(currentQuestion);
+
+                clearInterval(answerIntervalID);
+            } else {
+                answerPageTimeRemains--;
+                console.log(answerPageTimeRemains);
+            }
+        }, 1000);
+    },
     initialize: function () {
-        let display =$("#display");
+        let display = $("#display");
 
         display.append(`You will be asked trivia question about Google. You will have ${questionTime} seconds to answer the question, or the round will count as a loss. Good luck!</p>`);
         display.append(`<button id="begin-button" class="btn btn-primary">Begin</button>`);
-    },
-    loadQuestion: function (index) {
-        const loadedQuestion = questions[index];
-        display.append(`<h2>Question ${index}: ${loadedQuestion.question} </h2>`);
-        questionDisplay.append(`<button>${loadedQuestion.a}</button>`);
-        questionDisplay.append(`<button>${loadedQuestion.b}</button>`);
-        questionDisplay.append(`<button>${loadedQuestion.c}</button>`);
-        questionDisplay.append(`<button>${loadedQuestion.d}</button>`);
     }
 }
 
@@ -49,7 +89,7 @@ const game = {
 $(document).ready(function () {
     game.initialize();
 
-    $("#begin-button").on("click", function() {
+    $("#begin-button").on("click", function () {
         game.runGame();
     });
 });
