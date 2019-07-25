@@ -14,6 +14,9 @@ let remainingTime = questionTime;
 let answerPageTimeRemains = answerPageTime;
 let mainIntervalID;
 
+let losses = 0;
+let wins = 0;
+
 const googleImg = $("#google-image");
 const display = $("#display");
 
@@ -41,6 +44,7 @@ const game = {
                 // game.displayAnswerTimer();
                 // remainingTime = questionTime;
                 game.exitRound();
+                game.loadAnswer();
             } else {
                 remainingTime--;
                 $("#timer-display").text(remainingTime);
@@ -51,6 +55,7 @@ const game = {
     exitRound: function() {
         console.log("Display Results");
         clearInterval(mainIntervalID);
+        console.log("Display answertimer run");
         game.displayAnswerTimer();
         remainingTime = questionTime;
     },
@@ -67,8 +72,6 @@ const game = {
     },
     displayAnswerTimer: function () {
         let answerPageTimeRemains = answerPageTime;
-        
-        game.loadAnswer();
 
         answerIntervalID = setInterval(function () {
             if (answerPageTimeRemains == 0) {
@@ -88,19 +91,35 @@ const game = {
             }
         }, 1000);
     },
-    loadAnswer: function() {
+    loadAnswer: function(winStatus) {
         console.log("Load Answer run");
         game.cleanDisplay();
+        if (winStatus == true) {
+            display.append(`<h2>Correct!</h2>`);
+        } else if (winStatus == false ) {
+            display.append(`<h2>Incorrect!</h2>`);
+        } else {
+            display.append(`<h2>Time ran out!<h2>`);
+        }
         display.append(`${questions[currentQuestion].answer}`);
     },
     checkGuess: function() {
         if (userGuess == questions[currentQuestion].answer) {
             console.log("Correct!");
+            wins ++;
+            game.loadAnswer(true);
         } else {
             console.log("Incorrect :(");
+            losses ++;
+            game.loadAnswer(false);
         }
+        game.updateScore();
         game.exitRound();
 
+    },
+    updateScore: function () {
+        $("#correctGuessesDisplay").text(wins);
+        $("#incorrectGuessesDisplay").text(losses);
     },
     cleanDisplay: function () {
         display.empty(); 
