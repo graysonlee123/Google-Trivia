@@ -64,6 +64,7 @@ const game = {
         console.log(currentQuestion);
         game.cleanDisplay();
         game.startClock();
+        game.swapImage("question");
         const loadedQuestion = questions[index];
         display.append(`<div>Time remaining: <span id="timer-display">${questionTime}</span></div>`);
         display.append(`<h2>Question ${index + 1}: ${loadedQuestion.question}</h2>`);
@@ -92,6 +93,7 @@ const game = {
     },
     loadAnswer: function (winStatus) {
         game.cleanDisplay();
+        game.swapImage("answer");
         if (winStatus == true) {
             display.append(`<h2>Correct!</h2>`);
         } else if (winStatus == false) {
@@ -120,6 +122,9 @@ const game = {
     cleanDisplay: function () {
         display.empty();
     },
+    swapImage: function(x) {
+        $("#google-image").attr("src", `././assets/images/${x}.png`);
+    },
     endGame: function () {
         clearInterval(mainIntervalID);
         game.cleanDisplay();
@@ -127,6 +132,7 @@ const game = {
     },
     initialize: function () {
         game.cleanDisplay();
+        game.swapImage("google-trivia");
         currentQuestion = 0;
         wins = 0;
         losses = 0;
