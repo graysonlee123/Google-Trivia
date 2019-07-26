@@ -1,11 +1,11 @@
 // Variables
 
 const questions = [
-    { question: "Google was founded by Larry Page and who else?", a: "Steve Jobs", b: "Sergey Brin", c: "Bill Gates", d: "Terry Winograd", answer: "b" },
-    { question: "The name \"Google\" originated from a misspelling of:", a: "Googol", b: "Goosearch", c: "Googad", d: "Goolink", answer: "a" },
-    { question: "In January of 1996, shortly before the launch of Google, a new search engine was brought into existence. What was this search engine called?", a: "BackLinks", b: "BackRub", c: "BreakUp", d: "BackUp", answer: "b" },
-    { question: "The domain name www.google.com was registered on:", a: "January 12, 1998", b: "September 15, 1997", c: "August 7, 1997", d: "September 7, 1996", answer: "b" },
-    { question: "In 1998, when Google.com was still in beta, they were answering up to how many search queries a day?", a: "30,000", b: "450,000", c: "100,000", d: "10,000", answer: "d" }
+    { question: "Google was founded by Larry Page and who else?", a: "Steve Jobs", b: "Sergey Brin", c: "Bill Gates", d: "Terry Winograd", answer: "b", answerExplanation: "Google was founded by Larry Page and Sergey Brin!" },
+    { question: "The name \"Google\" originated from a misspelling of:", a: "Googol", b: "Goosearch", c: "Googad", d: "Goolink", answer: "a", answerExplanation: "The name \"Google\" originated from a misspelling of Googol."},
+    { question: "In January of 1996, shortly before the launch of Google, a new search engine was brought into existence. What was this search engine called?", a: "BackLinks", b: "BackRub", c: "BreakUp", d: "BackUp", answer: "b", answerExplanation: "The search engine competition was named BackRub." },
+    { question: "The domain name www.google.com was registered on:", a: "January 12, 1998", b: "September 15, 1997", c: "August 7, 1997", d: "September 7, 1996", answer: "b", answerExplanation: "www.google.com was registerd on September 15, 1997." },
+    { question: "In 1998, when Google.com was still in beta, they were answering up to how many search queries a day?", a: "30,000", b: "450,000", c: "100,000", d: "10,000", answer: "d", answerExplanation: "They were already answering 10,000 searches a day (in 1998!)" }
 ];
 
 const questionTime = 5;
@@ -97,11 +97,10 @@ const game = {
         if (winStatus == true) {
             display.append(`<h2>Correct!</h2>`);
         } else if (winStatus == false) {
-            display.append(`<h2>Incorrect!</h2>`);
+            display.append(`<h2>Incorrect!</h2>`, `<p>${questions[currentQuestion].answerExplanation}</p>`);
         } else {
-            display.append(`<h2>Time ran out!<h2>`);
+            display.append(`<h2>Time ran out!<h2>`, `<p>${questions[currentQuestion].answerExplanation}</p>`);
         }
-        display.append(`${questions[currentQuestion].answer}`);
     },
     checkGuess: function () {
         console.log("User guess: " + userGuess + "; Answer: " + questions[currentQuestion].answer);
