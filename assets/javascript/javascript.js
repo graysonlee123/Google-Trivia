@@ -8,8 +8,8 @@ const questions = [
     { question: "In 1998, when Google.com was still in beta, they were answering up to how many search queries a day?", a: "30,000", b: "450,000", c: "100,000", d: "10,000", answer: "d" }
 ];
 
-const questionTime = 10;
-const answerPageTime = 3;
+const questionTime = 5;
+const answerPageTime = 1;
 let remainingTime = questionTime;
 let answerPageTimeRemains = answerPageTime;
 let mainIntervalID;
@@ -22,7 +22,8 @@ const display = $("#display");
 
 let userGuess;
 
-let currentQuestion = 1;
+let currentQuestion = 0;
+let gameOver = false;
 
 // Game functions
 
@@ -43,8 +44,7 @@ const game = {
                 // clearInterval(mainIntervalID);
                 // game.displayAnswerTimer();
                 // remainingTime = questionTime;
-                game.exitRound();
-                game.loadAnswer();
+                game.exitRound(false);
             } else {
                 remainingTime--;
                 $("#timer-display").text(remainingTime);
@@ -52,19 +52,23 @@ const game = {
             }
         }, 1000);
     },
-    exitRound: function() {
-        console.log("Display Results");
+    exitRound: function (guessed) {
         clearInterval(mainIntervalID);
-        console.log("Display answertimer run");
         game.displayAnswerTimer();
         remainingTime = questionTime;
+        if (guessed == false) {
+            game.loadAnswer();
+            losses ++;
+        }
+        game.updateScore();
     },
     loadQuestion: function (index) {
+        console.log(currentQuestion);
         game.cleanDisplay();
         game.startClock();
         const loadedQuestion = questions[index];
         display.append(`<div>Time remaining: <span id="timer-display">${questionTime}</span></div>`);
-        display.append(`<h2>Question ${index}: ${loadedQuestion.question} </h2>`);
+        display.append(`<h2>Question ${index}: ${loadedQuestion.question}</h2>`);
         display.append(`<button class="btn" value="a">${loadedQuestion.a}</button>`);
         display.append(`<button class="btn" value="b">${loadedQuestion.b}</button>`);
         display.append(`<button class="btn" value="c">${loadedQuestion.c}</button>`);
@@ -72,49 +76,47 @@ const game = {
     },
     displayAnswerTimer: function () {
         let answerPageTimeRemains = answerPageTime;
-
         answerIntervalID = setInterval(function () {
-            if (answerPageTimeRemains == 0) {
-                //Run Exit Round
-                console.log("Next Round after answer");
+            if (answerPageTimeRemains == 0) { //If the timer has reached zero, clear the answer timer, and add to current question.
+                clearInterval(answerIntervalID);
 
                 currentQuestion++;
 
-                game.loadQuestion(currentQuestion);
-
-                answerPageTimeRemains = answerPageTime;
-
-                clearInterval(answerIntervalID);
+                if (currentQuestion == questions.length) { // If current question is the last
+                    game.endGame();
+                    gameOver = true;
+                } else {
+                    game.loadQuestion(currentQuestion);
+                }
             } else {
                 answerPageTimeRemains--;
-                console.log(answerPageTimeRemains);
             }
         }, 1000);
     },
-    loadAnswer: function(winStatus) {
-        console.log("Load Answer run");
+    loadAnswer: function (winStatus) {
+        console.log("The status of last round's buttons is " + winStatus);
         game.cleanDisplay();
         if (winStatus == true) {
             display.append(`<h2>Correct!</h2>`);
-        } else if (winStatus == false ) {
+        } else if (winStatus == false) {
             display.append(`<h2>Incorrect!</h2>`);
         } else {
             display.append(`<h2>Time ran out!<h2>`);
         }
         display.append(`${questions[currentQuestion].answer}`);
     },
-    checkGuess: function() {
+    checkGuess: function () {
+        console.log("User guess: " + userGuess + "; Answer: " + questions[currentQuestion].answer);
         if (userGuess == questions[currentQuestion].answer) {
             console.log("Correct!");
-            wins ++;
+            wins++;
             game.loadAnswer(true);
         } else {
-            console.log("Incorrect :(");
-            losses ++;
+            console.log("Incorrect");
+            losses++;
             game.loadAnswer(false);
         }
-        game.updateScore();
-        game.exitRound();
+        game.exitRound(true);
 
     },
     updateScore: function () {
@@ -122,7 +124,11 @@ const game = {
         $("#incorrectGuessesDisplay").text(losses);
     },
     cleanDisplay: function () {
-        display.empty(); 
+        display.empty();
+    },
+    endGame: function () {
+        console.log("Game end");
+        clearInterval(mainIntervalID);
     },
     initialize: function () {
         display.append(`You will be asked trivia question about Google. You will have ${questionTime} seconds to answer the question, or the round will count as a loss. Good luck!</p>`);
@@ -139,7 +145,7 @@ $(document).ready(function () {
         game.runGame();
     });
 
-    display.on("click", ".btn", function(e) {
+    display.on("click", ".btn", function (e) {
         const btnVal = $(this).attr("value");
         userGuess = btnVal
         console.log(btnVal);
