@@ -2,19 +2,19 @@
 
 const questions = [
     { question: "Google was founded by Larry Page and who else?", a: "Steve Jobs", b: "Sergey Brin", c: "Bill Gates", d: "Terry Winograd", answer: "b", answerExplanation: "Google was founded by Larry Page and Sergey Brin!" },
-    { question: "The name \"Google\" originated from a misspelling of:", a: "Googol", b: "Goosearch", c: "Googad", d: "Goolink", answer: "a", answerExplanation: "The name \"Google\" originated from a misspelling of Googol."},
-    { question: "In January of 1996, shortly before the launch of Google, a new search engine was brought into existence. What was this search engine called?", a: "BackLinks", b: "BackRub", c: "BreakUp", d: "BackUp", answer: "b", answerExplanation: "The search engine competition was named BackRub." },
-    { question: "The domain name www.google.com was registered on:", a: "January 12, 1998", b: "September 15, 1997", c: "August 7, 1997", d: "September 7, 1996", answer: "b", answerExplanation: "www.google.com was registerd on September 15, 1997." },
-    { question: "In 1998, when Google.com was still in beta, they were answering up to how many search queries a day?", a: "30,000", b: "450,000", c: "100,000", d: "10,000", answer: "d", answerExplanation: "They were already answering 10,000 searches a day (in 1998!)" },
-    { question: "In the year 2000, Google began selling what?", a: "Smaller versions of Google known as Googlers", b: "Image-based advertisements", c: "Text-based advertisements", d: "A ranking mechanism", answer: "c", answerExplanation: "In 2000, Google started selling text-based advertisements based on keywords users searched." },
-    { question: "The basis of Google's search tech is nicknamed PageRank, which is named after who or what?", a: "Total number of search results", b: "The original homepage", c: "A founder's girlfriend, Page", d: "Co-founder Larry Page", answer: "d", answerExplanation: "PageRank is named after Google's co-founder Larry Page." },
-    { question: "Google's informal corporate motto is:", a: "Turning the Page.", b: "Always First.", c: "Don't Be Evil.", d: "Experience the Difference.", answer: "c", answerExplanation: "Google's informal corporate motto is \"Don't be Evil.\"" },
-    { question: "Google received its first funding from Andy Mechtolscheim. It was how much money?", a: "$200,000", b: "$150,000", c: "$100,000", d: "$400,000", answer: "c", answerExplanation: "Google's first funding received was worth $100,000." },
-    { question: "To build Google Maps, Google bought an existing startup maps company, which was named:", a: "FindIT Tech", b: "Where 2 Technologies", c: "MapIT Technologies", d: "Get Lost Technologies", answer: "b", answerExplanation: "The company was named Where 2 Technologies. It was bought in 2005." }
+    { question: "The name \"Google\" originated from a misspelling of which word?", a: "Googol", b: "Goosearch", c: "Googad", d: "Goolink", answer: "a", answerExplanation: "The name \"Google\" originated from a misspelling of Googol."},
+    { question: "Before Google, there was a search engine named what?", a: "BackLinks", b: "BackRub", c: "BreakUp", d: "BackUp", answer: "b", answerExplanation: "The search engine competition was named BackRub." },
+    { question: "The domain name www.google.com was registered on what date?", a: "January 12, 1998", b: "September 15, 1997", c: "August 7, 1997", d: "September 7, 1996", answer: "b", answerExplanation: "www.google.com was registerd on September 15, 1997." },
+    { question: "How many searches was Google querying a day in 1998?", a: "30,000", b: "450,000", c: "100,000", d: "10,000", answer: "d", answerExplanation: "They were already answering 10,000 searches a day (in 1998!)" },
+    { question: "In the year 2000, Google began selling what?", a: "Hardware", b: "Image-based advertisements", c: "Text-based advertisements", d: "A keyword database", answer: "c", answerExplanation: "In 2000, Google started selling text-based advertisements based on keywords users searched." },
+    { question: "Google's search technology is nicknamed PageRank, named after who or what?", a: "Sergey's Dog", b: "The original homepage", c: "A founder's girlfriend", d: "Co-founder Larry Page", answer: "d", answerExplanation: "PageRank is named after Google's co-founder Larry Page." },
+    { question: "Google's informal corporate motto is:", a: "Turning the Page", b: "Always First", c: "Don't Be Evil", d: "Experience the Difference", answer: "c", answerExplanation: "Google's informal corporate motto is \"Don't be Evil.\"" },
+    { question: "How much money did Google's first investor give the company?", a: "$200,000", b: "$150,000", c: "$100,000", d: "$400,000", answer: "c", answerExplanation: "Google's first funding received was worth $100,000." },
+    { question: "Google bought an existing startup maps company, which was named:", a: "FindIT Tech", b: "Where 2 Technologies", c: "MapIT Technologies", d: "Get Lost Technologies", answer: "b", answerExplanation: "The company was named Where 2 Technologies. It was bought in 2005." }
 ];
 
 const questionTime = 20;
-const answerPageTime = 2;
+const answerPageTime = 4;
 let remainingTime = questionTime;
 let answerPageTimeRemains = answerPageTime;
 let mainIntervalID;
@@ -26,6 +26,7 @@ const googleImg = $("#google-image");
 const display = $("#display");
 
 let userGuess;
+let userGuessString;
 
 let currentQuestion = 0;
 
@@ -102,10 +103,11 @@ const game = {
         if (winStatus == true) {
             display.append(`<h2>Correct!</h2>`);
         } else if (winStatus == false) {
-            display.append(`<h2>Incorrect!</h2>`, `<p>${questions[currentQuestion].answerExplanation}</p>`);
+            display.append(`<h2>Incorrect!</h2>`);
         } else {
-            display.append(`<h2>Time ran out!<h2>`, `<p>${questions[currentQuestion].answerExplanation}</p>`);
+            display.append(`<h2>Time ran out!<h2>`);
         }
+        display.append(`<p><strong>A: </strong>${questions[currentQuestion].answerExplanation}</p>`);
     },
     checkGuess: function () {
         console.log("User guess: " + userGuess + "; Answer: " + questions[currentQuestion].answer);
@@ -132,7 +134,7 @@ const game = {
     endGame: function () {
         clearInterval(mainIntervalID);
         game.cleanDisplay();
-        display.append(`<h2>Your final score:<h2>`, `<p>Wins: ${wins}</p>`, `<p>Losses: ${losses}</p>`, `<button id="btn-restart" class="btn-style">Play Again?</button>`);
+        display.append(`<h2>Your final score:<h2>`, `<p><strong>${wins}</strong> Wins &ensp; | &ensp; <strong>${losses}</strong> Losses</p>`, `<button id="btn-restart" class="btn-style">Play Again?</button>`);
     },
     initialize: function () {
         game.cleanDisplay();
@@ -142,7 +144,7 @@ const game = {
         losses = 0;
         remainingTime = questionTime;
         answerPageTimeRemains = answerPageTime;
-        display.append(`You will be asked trivia question about Google. You will have ${questionTime} seconds to answer the question, or the round will count as a loss. Good luck!</p>`);
+        display.append(`<p id="starting-para">You will be asked trivia question about Google. You will have <strong>${questionTime}</strong> seconds to answer the question, or the round will count as a loss. Good luck!</p>`);
         display.append(`<button onclick="game.runGame()" class="btn-style">Begin</button>`);
     }
 }
@@ -158,6 +160,7 @@ $(document).ready(function () {
 display.on("click", ".btn-game", function (e) {
     const btnVal = $(this).attr("value");
     userGuess = btnVal
+    userGuessString = $(this).attr("text");
     console.log(btnVal);
     game.checkGuess();
 });

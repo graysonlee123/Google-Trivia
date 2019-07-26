@@ -2,6 +2,14 @@ body {
     color: #5F6368;
 }
 
+p {
+    margin-bottom: 6px;
+}
+
+#starting-para {
+    padding: 0 15%;
+}
+
 #main-container {
     width: 800px;
     min-height: 300px;
