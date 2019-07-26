@@ -134,6 +134,7 @@ const game = {
     endGame: function () {
         clearInterval(mainIntervalID);
         game.cleanDisplay();
+        game.swapImage("google-trivia");
         display.append(`<h2>Your final score:<h2>`, `<p><strong>${wins}</strong> Wins &ensp; | &ensp; <strong>${losses}</strong> Losses</p>`, `<button id="btn-restart" class="btn-style">Play Again?</button>`);
     },
     initialize: function () {
