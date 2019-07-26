@@ -14,15 +14,18 @@
 </head>
 
 <body>
-    <nav class="navbar">
+    <nav class="navbar p-4">
         <div>
-            <span>Correct Guesses: <span id="correctGuessesDisplay">0</span></span>
-            <span>Incorrect Guesses: <span id="incorrectGuessesDisplay">0</span></span>
+            <span>Correct Guesses <strong><span id="correctGuessesDisplay"></span></strong></span>
+            <span id="incorrectSpan">Incorrect Guesses <strong><span id="incorrectGuessesDisplay"></span></strong></span>
+        </div>
+        <div id="time-remaining">
+            Time Remaining
         </div>
     </nav>
 
-    <div id="main-container" class="container mx-auto mt-5 text-center rounded">
-        <img src="./assets//images/google-trivia.png" alt="Google Trivia" id="google-image" class="w-50">
+    <div id="main-container" class="container mx-auto text-center rounded">
+        <img src="./assets//images/google-trivia.png" alt="Google Trivia" id="google-image">
         <div id="display">
 
         </div>

@@ -14,7 +14,7 @@ const questions = [
 ];
 
 const questionTime = 20;
-const answerPageTime = 3;
+const answerPageTime = 2;
 let remainingTime = questionTime;
 let answerPageTimeRemains = answerPageTime;
 let mainIntervalID;
@@ -71,12 +71,12 @@ const game = {
         game.startClock();
         game.swapImage("question");
         const loadedQuestion = questions[index];
-        display.append(`<div>Time remaining: <span id="timer-display">${questionTime}</span></div>`);
-        display.append(`<h2>Question ${index + 1}: ${loadedQuestion.question}</h2>`);
-        display.append(`<button class="btn-game" value="a">${loadedQuestion.a}</button>`);
-        display.append(`<button class="btn-game" value="b">${loadedQuestion.b}</button>`);
-        display.append(`<button class="btn-game" value="c">${loadedQuestion.c}</button>`);
-        display.append(`<button class="btn-game" value="d">${loadedQuestion.d}</button>`);
+        $("#time-remaining").html(`<div>Time remaining <strong><span id="timer-display">${questionTime}</span></strong>s</div>`);
+        display.append(`<div id="search-bar">${loadedQuestion.question}</div>`);
+        display.append(`<button class="btn-game btn-style" value="a">${loadedQuestion.a}</button>`);
+        display.append(`<button class="btn-game btn-style" value="b">${loadedQuestion.b}</button>`);
+        display.append(`<button class="btn-game btn-style" value="c">${loadedQuestion.c}</button>`);
+        display.append(`<button class="btn-game btn-style" value="d">${loadedQuestion.d}</button>`);
     },
     displayAnswerTimer: function () {
         let answerPageTimeRemains = answerPageTime;
@@ -132,7 +132,7 @@ const game = {
     endGame: function () {
         clearInterval(mainIntervalID);
         game.cleanDisplay();
-        display.append(`<h2>Your final score:<h2>`, `<p>Wins: ${wins}</p>`, `<p>Losses: ${losses}</p>`, `<button id="btn-restart">Play Again?</button>`);
+        display.append(`<h2>Your final score:<h2>`, `<p>Wins: ${wins}</p>`, `<p>Losses: ${losses}</p>`, `<button id="btn-restart" class="btn-style">Play Again?</button>`);
     },
     initialize: function () {
         game.cleanDisplay();
@@ -143,7 +143,7 @@ const game = {
         remainingTime = questionTime;
         answerPageTimeRemains = answerPageTime;
         display.append(`You will be asked trivia question about Google. You will have ${questionTime} seconds to answer the question, or the round will count as a loss. Good luck!</p>`);
-        display.append(`<button onclick="game.runGame()" class="btn btn-primary">Begin</button>`);
+        display.append(`<button onclick="game.runGame()" class="btn-style">Begin</button>`);
     }
 }
 
