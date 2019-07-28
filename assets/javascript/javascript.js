@@ -145,7 +145,7 @@ const game = {
         losses = 0;
         remainingTime = questionTime;
         answerPageTimeRemains = answerPageTime;
-        display.append(`<p id="starting-para">You will be asked trivia question about Google. You will have <strong>${questionTime}</strong> seconds to answer the question, or the round will count as a loss. Good luck!</p>`);
+        display.append(`<p id="starting-para">You will be asked trivia questions about Google. You will have <strong>${questionTime}</strong> seconds to answer the question, or the round will count as a loss. Good luck!</p>`);
         display.append(`<button onclick="game.runGame()" class="btn-style">Begin</button>`);
     }
 }
