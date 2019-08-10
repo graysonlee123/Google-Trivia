@@ -1,10 +1,21 @@
-# Google-Trivia
+# Google Trivia
+
 A trivia game. Topic: Google.
 
-## About
-Google's history is very interesting, and this trivia game will test your knowledge about the company's past.
+## Deployment
 
-## How to Play
-Click here (https://graysonlee123.github.io/Google-Trivia/) to play the game! You will be asked trivia questions about Google. You will have 20 seconds to answer the question, or the round will count as a loss. Good luck!
+Visit the deployed link [here](https://graysonlee123.github.io/Google-Trivia/).
+## Built With
 
-_Maintained and created by graysonlee123_
+* [Bootstrap](https://getbootstrap.com/)
+* [jQuery](https://api.jquery.com)
+
+## Authors
+
+* **Grayson Gantek** - *Initial work* - [graysonlee123](https://github.com/graysonlee123)
+
+See also the list of [contributors](https://github.com/graysonlee123/Google-Trivia/graphs/contributors) who participated in this project.
+
+## Acknowledgments
+
+* Credits for the question goes to [funtrivia.com](https://www.funtrivia.com/playquiz/quiz28725520e2fd0.html)
