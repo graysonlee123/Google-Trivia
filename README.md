@@ -12,7 +12,7 @@ Visit the deployed link [here](https://graysonlee123.github.io/Google-Trivia/).
 
 ## Authors
 
-* **Grayson Gantek** - *Initial work* - [graysonlee123](https://github.com/graysonlee123)
+* **Grayson Gantek** - [graysonlee123](https://github.com/graysonlee123)
 
 See also the list of [contributors](https://github.com/graysonlee123/Google-Trivia/graphs/contributors) who participated in this project.
 
