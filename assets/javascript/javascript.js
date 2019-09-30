@@ -1,18 +1,4 @@
 // Variables
-
-const questions = [
-    { question: "Google was founded by Larry Page and who else?", a: "Steve Jobs", b: "Sergey Brin", c: "Bill Gates", d: "Terry Winograd", answer: "b", answerExplanation: "Google was founded by Larry Page and Sergey Brin!" },
-    { question: "The name \"Google\" originated from a misspelling of which word?", a: "Googol", b: "Goosearch", c: "Googad", d: "Goolink", answer: "a", answerExplanation: "The name \"Google\" originated from a misspelling of Googol."},
-    { question: "Before Google, there was a search engine named what?", a: "BackLinks", b: "BackRub", c: "BreakUp", d: "BackUp", answer: "b", answerExplanation: "The search engine competition was named BackRub." },
-    { question: "The domain name www.google.com was registered on what date?", a: "January 12, 1998", b: "September 15, 1997", c: "August 7, 1997", d: "September 7, 1996", answer: "b", answerExplanation: "www.google.com was registerd on September 15, 1997." },
-    { question: "How many searches was Google querying a day in 1998?", a: "30,000", b: "450,000", c: "100,000", d: "10,000", answer: "d", answerExplanation: "They were already answering 10,000 searches a day (in 1998!)" },
-    { question: "In the year 2000, Google began selling what?", a: "Hardware", b: "Image-based advertisements", c: "Text-based advertisements", d: "A keyword database", answer: "c", answerExplanation: "In 2000, Google started selling text-based advertisements based on keywords users searched." },
-    { question: "Google's search technology is nicknamed PageRank, named after who or what?", a: "Sergey's Dog", b: "The original homepage", c: "A founder's girlfriend", d: "Co-founder Larry Page", answer: "d", answerExplanation: "PageRank is named after Google's co-founder Larry Page." },
-    { question: "Google's informal corporate motto is:", a: "Turning the Page", b: "Always First", c: "Don't Be Evil", d: "Experience the Difference", answer: "c", answerExplanation: "Google's informal corporate motto is \"Don't be Evil.\"" },
-    { question: "How much money did Google's first investor give the company?", a: "$200,000", b: "$150,000", c: "$100,000", d: "$400,000", answer: "c", answerExplanation: "Google's first funding received was worth $100,000." },
-    { question: "Google bought an existing startup maps company, which was named:", a: "FindIT Tech", b: "Where 2 Technologies", c: "MapIT Technologies", d: "Get Lost Technologies", answer: "b", answerExplanation: "The company was named Where 2 Technologies. It was bought in 2005." }
-];
-
 const questionTime = 20;
 const answerPageTime = 4;
 let remainingTime = questionTime;
@@ -31,6 +17,13 @@ let userGuessString;
 let currentQuestion = 0;
 
 // Game functions
+$.getJSON('/assets/json/questions.json')
+    .then(data => {
+        game.initialize();
+    }).catch(err => {
+        console.log(err);
+        display.empty().append(`<div>Sorry! Something went wrong. Please <a href="https://www.github.com/graysonlee123/google-trivia/issues" target="_blank">submit an issue</a>.</div>`);
+    });
 
 const game = {
     runGame: function () {
@@ -150,13 +143,7 @@ const game = {
     }
 }
 
-// On webpage load
-
-$(document).ready(function () {
-    game.initialize();
-});
-
-// ON button presses
+// Handle button presses
 
 display.on("click", ".btn-game", function (e) {
     const btnVal = $(this).attr("value");

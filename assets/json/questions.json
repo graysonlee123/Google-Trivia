@@ -1,0 +1,92 @@
+[
+  {
+    "question": "Google was founded by Larry Page and who else?",
+    "answer1": "Steve Jobs",
+    "answer2": "Sergey Brin",
+    "answer3": "Bill Gates",
+    "answer4": "Terry Winograd",
+    "correctAnswer": "answer2",
+    "answerExplanation": "Google was founded by Larry Page and Sergey Brin!"
+  },
+  {
+    "question": "The name \"Google\" originated from a misspelling of which word?",
+    "answer1": "Googol",
+    "answer2": "Goosearch",
+    "answer3": "Googad",
+    "answer4": "Goolink",
+    "correctAnswer": "answer1",
+    "answerExplanation": "The name \"Google\" originated from a misspelling of Googol."
+  },
+  {
+    "question": "Before Google, there was a search engine named what?",
+    "answer1": "BackLinks",
+    "answer2": "BackRub",
+    "answer3": "BreakUp",
+    "answer4": "BackUp",
+    "correctAnswer": "answer2",
+    "answerExplanation": "The search engine competition was named BackRub."
+  },
+  {
+    "question": "The domain name www.google.com was registered on what date?",
+    "answer1": "January 12, 1998",
+    "answer2": "September 15, 1997",
+    "answer3": "August 7, 1997",
+    "answer4": "September 7, 1996",
+    "correctAnswer": "answer2",
+    "answerExplanation": "www.google.com was registerd on September 15, 1997."
+  },
+  {
+    "question": "How many searches was Google querying a day in 1998?",
+    "answer1": "30,000",
+    "answer2": "450,000",
+    "answer3": "100,000",
+    "answer4": "10,000",
+    "correctAnswer": "answer4",
+    "answerExplanation": "They were already answering 10,000 searches a day (in 1998!)"
+  },
+  {
+    "question": "In the year 2000, Google began selling what?",
+    "answer1": "Hardware",
+    "answer2": "Image-based advertisements",
+    "answer3": "Text-based advertisements",
+    "answer4": "A keyword database",
+    "correctAnswer": "answer3",
+    "answerExplanation": "In 2000, Google started selling text-based advertisements based on keywords users searched."
+  },
+  {
+    "question": "Google's search technology is nicknamed PageRank, named after who or what?",
+    "answer1": "Sergey's Dog",
+    "answer2": "The original homepage",
+    "answer3": "A founder's girlfriend",
+    "answer4": "Co-founder Larry Page",
+    "correctAnswer": "answer4",
+    "answerExplanation": "PageRank is named after Google's co-founder Larry Page."
+  },
+  {
+    "question": "Google's informal corporate motto is:",
+    "answer1": "Turning the Page",
+    "answer2": "Always First",
+    "answer3": "Don't Be Evil",
+    "answer4": "Experience the Difference",
+    "correctAnswer": "answer3",
+    "answerExplanation": "Google's informal corporate motto is \"Don't be Evil.\""
+  },
+  {
+    "question": "How much money did Google's first investor give the company?",
+    "answer1": "$200,000",
+    "answer2": "$150,000",
+    "answer3": "$100,000",
+    "answer4": "$400,000",
+    "correctAnswer": "answer3",
+    "answerExplanation": "Google's first funding received was worth $100,000."
+  },
+  {
+    "question": "Google bought an existing startup maps company, which was named:",
+    "answer1": "FindIT Tech",
+    "answer2": "Where 2 Technologies",
+    "answer3": "MapIT Technologies",
+    "answer4": "Get Lost Technologies",
+    "correctAnswer": "answer2",
+    "answerExplanation": "The company was named Where 2 Technologies. It was bought in 2005."
+  }
+]
