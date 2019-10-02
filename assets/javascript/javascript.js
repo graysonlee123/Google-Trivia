@@ -4,7 +4,7 @@ let questions;
 let losses = 0;
 let wins = 0;
 
-const questionTime = 20;
+const questionTime = 15;
 const answerPageTime = 4;
 
 let remainingTime = questionTime;
@@ -49,15 +49,13 @@ const game = {
 
     startClock() {
         mainIntervalID = setInterval(function () {
-            
-            if (remainingTime == 0) {
+            if (remainingTime === 0) {
                 game.exitRound(false);
             } else {
                 remainingTime--;
                 game.progressBar(remainingTime / questionTime);
                 $('#timer-display').text(remainingTime);
             }
-
         }, 1000);
     },
 
@@ -101,8 +99,7 @@ const game = {
 
                 currentQuestion++;
 
-                if (currentQuestion == questions.length) {
-                    // and if current question is the last
+                if (currentQuestion === questions.length) {
                     game.endGame();
                 } else {
                     game.loadQuestion(currentQuestion);
@@ -137,6 +134,7 @@ const game = {
             losses++;
             game.loadAnswer(false);
         }
+        
         game.exitRound(true);
     },
 
@@ -147,6 +145,7 @@ const game = {
 
     cleanDisplay() {
         display.empty();
+        game.resetProgressBar();
     },
 
     swapImage(x) {
@@ -155,6 +154,7 @@ const game = {
 
     endGame() {
         clearInterval(mainIntervalID);
+
         game.cleanDisplay();
         game.swapImage('google-trivia');
 
@@ -163,8 +163,19 @@ const game = {
 
     progressBar(percent) {
         const parsePercent = `${percent * 100}%`;
-        console.log(parsePercent);
+        
         progressBar.width(parsePercent);
+
+        if (percent <= 0.15) {
+            progressBar.css('background-color', 'var(--color-red)');
+        } else if (percent <= 0.5) {
+            progressBar.css('background-color', 'var(--color-yellow)');
+        }
+    },
+
+    resetProgressBar() {
+        progressBar.width('100%');        
+        progressBar.css('background-color', 'var(--color-blue)');
     },
 
     initialize() {
