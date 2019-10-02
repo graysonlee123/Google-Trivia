@@ -44,7 +44,7 @@ display.on('click', '#btn-restart', () => game.initialize());
 const game = {
     runGame() {
         game.loadQuestion(currentQuestion);
-        googleImg.attr('src', '././assets/images/question.png');
+        googleImg.attr('src', '/assets/images/question.png');
     },
 
     startClock() {
@@ -53,8 +53,7 @@ const game = {
                 game.exitRound(false);
             } else {
                 remainingTime--;
-                game.progressBar(remainingTime / questionTime);
-                $('#timer-display').text(remainingTime);
+                game.progressBar((remainingTime) / questionTime);
             }
         }, 1000);
     },
@@ -147,7 +146,7 @@ const game = {
     },
 
     swapImage(x) {
-        $('#google-image').attr('src', `././assets/images/${x}.png`);
+        $('#google-image').attr('src', `/assets/images/${x}.png`);
     },
 
     endGame() {
