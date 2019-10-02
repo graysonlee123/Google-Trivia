@@ -166,13 +166,14 @@ const game = {
 
         if (percent <= 0.15) {
             progressBar.css('background-color', 'var(--color-red)');
-        } else if (percent <= 0.5) {
-            progressBar.css('background-color', 'var(--color-yellow)');
         }
     },
 
     resetProgressBar() {
-        progressBar.width('100%');        
+        progressBar.css('transition', 'width 0s linear');
+        progressBar.width('100%');
+        progressBar[0].offsetHeight;
+        progressBar.css('transition', 'width 1s linear');
         progressBar.css('background-color', 'var(--color-blue)');
     },
 
