@@ -59,13 +59,13 @@ const game = {
         }, 1000);
     },
 
-    exitRound(guessed) {
+    exitRound(correctGuess) {
         remainingTime = questionTime;
         
         clearInterval(mainIntervalID);
         game.displayAnswerTimer();
 
-        if (guessed == false) {
+        if (!correctGuess) {
             game.loadAnswer();
             losses ++;
         }
@@ -79,8 +79,6 @@ const game = {
         game.cleanDisplay();
         game.startClock();
         game.swapImage('question');
-
-        $('#time-remaining').html(`<div>Time remaining <strong><span id='timer-display'>${questionTime}</span></strong>s</div>`);
 
         display.append(`<div id='search-bar'>${currentQuestionData.question}</div>`);
         display.append(`<button class='btn-game btn-style' value='answer1'>${currentQuestionData.answer1}</button>`);
